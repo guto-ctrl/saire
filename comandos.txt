@@ -1,0 +1,28 @@
+mkdir meu-projeto
+cd meu-projeto
+npm init -y
+
+npm install fastify
+npm install prisma@6 @prisma/client@6
+npm install dotenv
+
+npx prisma init
+    /prisma
+    schema.prisma
+    .env
+
+    .env
+        DATABASE_URL="file:./dev.db"
+
+    dev.bd
+        datasource db {
+        provider = "sqlite"
+        url      = env("DATABASE_URL")
+        }
+
+        generator client {
+        provider = "prisma-client-js"
+        }
+
+migration
+npx prisma migrate dev --name init
