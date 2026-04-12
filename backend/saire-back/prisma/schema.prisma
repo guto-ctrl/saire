@@ -20,6 +20,7 @@ model Refrigerador {
 
   especificacao Especificacoes?
   documentos    Documento[]
+  etiquetas     Etiqueta[]
 }
 
 model Especificacoes {
@@ -51,6 +52,20 @@ model Documento {
 
   @@index([refrigeradorId])
   @@index([tipo])
+}
+
+model Etiqueta {
+  id               Int      @id @default(autoincrement())
+  refrigeradorId   Int
+
+  numeroSerie      String
+  qrCodeUrl        String?
+
+  createdAt        DateTime @default(now())
+
+  refrigerador Refrigerador @relation(fields: [refrigeradorId], references: [id])
+
+  @@index([refrigeradorId])
 }
 
 enum TipoDocumento {
