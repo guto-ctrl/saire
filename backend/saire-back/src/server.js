@@ -1,10 +1,13 @@
 const Fastify = require('fastify')
 const swagger = require('@fastify/swagger')
 const swaggerUI = require('@fastify/swagger-ui')
+const multipart = require('@fastify/multipart')
+
 
 // Importando rotas
 const refrigeradorRoutes = require('./routes/refrigeradorRoutes')
 const especificacaoRoutes = require('./routes/especificacaoRoutes')
+const documentoRoutes = require('./routes/documentoRoutes')
 
 const fastify = Fastify({ logger: true })
 
@@ -23,11 +26,17 @@ fastify.register(swagger, {
 fastify.register(swaggerUI, {
     routePrefix: '/swagger'
 })
+fastify.register(multipart, {
+    limits: {
+        fileSize: 5 * 1024 * 1024 // 5MB
+    }//,
+    // attachFieldsToBody: true
+})
 
 // Injetando as rotas
 fastify.register(refrigeradorRoutes)
 fastify.register(especificacaoRoutes)
-
+fastify.register(documentoRoutes)
 
 // Rota
 fastify.get('/', async (request, reply) => {
