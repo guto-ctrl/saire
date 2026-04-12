@@ -4,12 +4,56 @@
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
-generator client {
-  provider = "prisma-client"
-  output   = "../generated/prisma"
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
 }
 
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Refrigerador {
+  id            Int              @id @default(autoincrement())
+  modelo        String
+  createdAt     DateTime         @default(now())
+
+  especificacao Especificacoes?
+  documentos    Documento[]
+}
+
+model Especificacoes {
+  id                       Int    @id @default(autoincrement())
+  refrigeradorId           Int    @unique
+
+  voltagem                 Int?
+  frequencia               Int?
+  corrente                 Float?
+  correnteBloqueadoY       Float?
+  correnteBloqueadoYY      Float?
+  volumeDeslocamento       Float?
+  rotacao                  Int?
+
+  refrigerador Refrigerador @relation(fields: [refrigeradorId], references: [id])
+}
+
+model Documento {
+  id               Int       @id @default(autoincrement())
+  refrigeradorId   Int
+
+  tipo             TipoDocumento
+  url              String
+  nomeArquivo      String?
+
+  createdAt        DateTime  @default(now())
+
+  refrigerador Refrigerador @relation(fields: [refrigeradorId], references: [id])
+
+  @@index([refrigeradorId])
+  @@index([tipo])
+}
+
+enum TipoDocumento {
+  manual
+  montagem
 }
