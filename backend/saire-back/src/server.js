@@ -1,9 +1,12 @@
 const Fastify = require('fastify')
 const swagger = require('@fastify/swagger')
 const swaggerUI = require('@fastify/swagger-ui')
-const refrigeradorRoutes = require('./routes/refrigeradorRoutes')
 
-const fastify = Fastify({logger: true})
+// Importando rotas
+const refrigeradorRoutes = require('./routes/refrigeradorRoutes')
+const especificacaoRoutes = require('./routes/especificacaoRoutes')
+
+const fastify = Fastify({ logger: true })
 
 // CONFIG
 let _port = 3000
@@ -18,11 +21,13 @@ fastify.register(swagger, {
     }
 })
 fastify.register(swaggerUI, {
-  routePrefix: '/swagger'
+    routePrefix: '/swagger'
 })
 
-// Importando rotas
+// Injetando as rotas
 fastify.register(refrigeradorRoutes)
+fastify.register(especificacaoRoutes)
+
 
 // Rota
 fastify.get('/', async (request, reply) => {
@@ -33,7 +38,7 @@ fastify.get('/', async (request, reply) => {
 // Start do server
 const start = async () => {
     try {
-        await fastify.listen({ port: `${_port}`, host: `${_host}`})
+        await fastify.listen({ port: `${_port}`, host: `${_host}` })
         console.log('Servidor rodando em http://localhost:3000')
     } catch (err) {
         fastify.log.error(err)
@@ -41,4 +46,4 @@ const start = async () => {
     }
 }
 
-start ()
+start()
