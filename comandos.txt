@@ -5,6 +5,7 @@ npm init -y
 npm install fastify
 npm install prisma@6 @prisma/client@6
 npm install dotenv
+npm install @fastify/swagger @fastify/swagger-ui
 
 npx prisma init
     /prisma
