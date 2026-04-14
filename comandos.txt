@@ -9,6 +9,7 @@ npm install @fastify/swagger @fastify/swagger-ui
 npm install -D nodemon
 npm install @supabase/supabase-js
 npm install @fastify/multipart
+npm install @fastify/static
 
 npx prisma init
     /prisma
