@@ -4,7 +4,7 @@ const swaggerUI = require('@fastify/swagger-ui')
 const multipart = require('@fastify/multipart')
 
 // Importando rotas
-const refrigeradorRoutes = require('./routes/refrigeradorRoutes')
+const refrigeradorRoutes = require('./routes/CompressorRoutes')
 const especificacaoRoutes = require('./routes/especificacaoRoutes')
 const documentoRoutes = require('./routes/documentoRoutes')
 const staticRoutes = require('./routes/staticRoute')
