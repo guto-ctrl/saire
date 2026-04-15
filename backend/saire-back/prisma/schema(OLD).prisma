@@ -18,6 +18,15 @@ model Compressor {
   modelo        String
   createdAt     DateTime         @default(now())
 
+  especificacao Especificacoes?
+  documentos    Documento[]
+  etiquetas     Etiqueta[]
+}
+
+model Especificacoes {
+  id                       Int    @id @default(autoincrement())
+  compressorId             Int    @unique
+
   voltagem                 Int?
   frequencia               Int?
   corrente                 Float?
@@ -26,14 +35,14 @@ model Compressor {
   volumeDeslocamento       Float?
   rotacao                  Int?
 
-  documentos    Documento[]
-  etiquetas     Etiqueta[]
+  compressor Compressor @relation(fields: [compressorId], references: [id])
 }
 
 model Documento {
   id               Int       @id @default(autoincrement())
   compressorId     Int
 
+  tipo             TipoDocumento
   url              String
   nomeArquivo      String?
 
@@ -42,12 +51,12 @@ model Documento {
   compressor Compressor @relation(fields: [compressorId], references: [id])
 
   @@index([compressorId])
+  @@index([tipo])
 }
 
 model Etiqueta {
   id               Int      @id @default(autoincrement())
   compressorId     Int
-  documentoId      Int
 
   numeroSerie      String
   qrCodeUrl        String?
@@ -55,7 +64,11 @@ model Etiqueta {
   createdAt        DateTime @default(now())
 
   compressor Compressor @relation(fields: [compressorId], references: [id])
-  documento  Documento  @relation(fields: [documentoId], references: [id])
 
   @@index([compressorId])
+}
+
+enum TipoDocumento {
+  manual
+  montagem
 }
