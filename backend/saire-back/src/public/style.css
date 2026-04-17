@@ -183,8 +183,8 @@ button.btn-select {
 }
 
 .new-create-btn {
-    border: none;
-    background-color: rgba(0, 255, 13, 0.63);
+    border-color: rgb(0, 0, 0);
+    border-width: 0.2px;
 }
 
 .new-close-btn {
@@ -198,7 +198,9 @@ button.btn-select {
 }
 
 .new-create-btn:hover {
-    background-color: rgb(0, 255, 13);
+    /* background-color: rgb(0, 255, 13); */
+    background-color: rgba(0, 255, 13, 0.63);
+
     /* color: whitesmoke; */
 }
 
