@@ -7,7 +7,7 @@ const modal = document.getElementById('modal');
 const newBtn = document.querySelector('.new-btn');
 const cancelBtn = document.querySelector('.cancel');
 
-const apiURL = 'http://localhost:3000/compressores';
+const apiURL = 'http://127.0.0.1:3000/compressores';
 
 // DROPDOWN
 btnSelect.addEventListener('click', async () => {
