@@ -25,18 +25,43 @@ btnSelect.addEventListener('click', async () => {
             data.forEach(comp => {
                 const item = document.createElement('div');
                 item.classList.add('item');
-                item.textContent = comp.nome;
+
+                // 👇 HTML bonitinho com mais infos
+                item.innerHTML = `
+                    <div class="item-content">
+                        <strong>${comp.modelo}</strong>
+                        <span class="item-sub">
+                            ${comp.marca || 'Sem marca'} • ${comp.voltagem || '-'}V
+                        </span>
+                    </div>
+                `;
+
+                // 👇 guarda tudo no elemento (pra usar depois)
+                item.dataset.id = comp.id;
+                item.dataset.modelo = comp.modelo;
+                item.dataset.marca = comp.marca;
+                item.dataset.voltagem = comp.voltagem;
 
                 item.onclick = () => {
-                    selectedText.textContent = comp.nome;
+                    selectedText.textContent = comp.modelo;
+
+                    // exemplo de uso
+                    console.log('Selecionado:', {
+                        id: item.dataset.id,
+                        modelo: item.dataset.modelo,
+                        marca: item.dataset.marca,
+                        voltagem: item.dataset.voltagem
+                    });
+
                     dropdown.classList.remove('open');
                 };
 
                 dropdownMenu.appendChild(item);
             });
 
-        } catch {
+        } catch (err) {
             dropdownMenu.innerHTML = '<div class="item">Erro ao carregar</div>';
+            console.error(err);
         }
     }
 });
