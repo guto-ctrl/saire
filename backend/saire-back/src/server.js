@@ -41,7 +41,8 @@ fastify.register(multipart, {
 const path = require('path')
 fastify.register(require('@fastify/static'), {
   root: path.join(__dirname, 'public'),
-  prefix: '/',
+  prefix: '/public/',
+  decorateReply: false
 });
 
 // Injetando as rotas
