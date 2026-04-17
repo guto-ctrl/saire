@@ -205,13 +205,11 @@ button svg {
     height: min-content;
 }
 
-
-
 /* BOTÃO NOVO */
 
 .new-btn {
     background: #2563EB;
-    color: white;
+    color: whitesmoke;
     border: none;
     font-weight: 500;
 
@@ -223,6 +221,21 @@ button svg {
     background: rgb(18, 69, 211);
     box-shadow: 0 6px 16px rgba(37, 99, 235, 0.3);
     /* transform: translateY(-0.5px); */
+    transform: scale(1.02);
+}
+
+/* BOTÃO GERENCIAR CHECKLISTS */
+.checklist-btn {
+    box-shadow: 0 4px 12px #25eb3f40;
+    background-color: #0da00d;
+    color: whitesmoke;
+    border: none;
+}
+
+.checklist-btn:hover {
+    background-color: #00aa00;
+    border: none;
+    box-shadow: 0 4px 12px rgba(37, 235, 63, 0.3);
     transform: scale(1.02);
 }
 
