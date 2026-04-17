@@ -1,107 +1,152 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SAIRE</title>
+
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="./img/saire-icon.png">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> <!-- Material icons do Google -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
-    <div class="top">
-        <div class="program-infos">
-            <img src="./img/saire-icon-big.png" alt="Ícone do sistema" class="logo-programa">
-            <div class="program-infos-text">
-                <h2 class="title">Saire</h2>
-                <p class="desc">Programa gerenciador de etiquetas</p>
-            </div>
+
+<!-- HEADER -->
+<header class="top">
+    <div class="program-infos">
+        <img src="./img/saire-icon-big.png" class="logo-programa">
+        <div>
+            <h2>Saire</h2>
+            <p>Gerenciador de etiquetas</p>
         </div>
-        <div class="container-CTAbuttons">
-            <div class="dropdown">
-                <button class="btn-select">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-list-icon lucide-list"><path d="M3 5h.01"/><path d="M3 12h.01"/><path d="M3 19h.01"/><path d="M8 5h13"/><path d="M8 12h13"/><path d="M8 19h13"/></svg>
-                    Selecionar Compressor
-                </button>
-                <div class="dropdown-menu"></div>
-            </div>
-            <button class="new-btn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-plus-icon lucide-circle-plus"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
-                Novo Compressor
+    </div>
+
+    <div class="actions">
+        <!-- SELECT -->
+        <div class="dropdown">
+            <button class="btn-select">
+                <div class="left">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu-icon lucide-menu"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg>
+
+                    <span class="selected-text">
+                        Selecionar Compressor
+                    </span>
+                </div>
+
+                <span class="material-icons arrow">expand_more</span>
             </button>
-            <div class="new-menu">
-                <div class="new-menu-content">
-                    <form class="form-compressor">
-                        <h2 class="new-menu-title">Novo compressor</h2>
-                        
-                        <!-- Identificação -->
-                        <div class="form-group">
-                            <label>Modelo</label>
-                            <input type="text" name="modelo">
-                        </div>
 
-                        <div class="form-group">
-                            <label>Marca</label>
-                            <input type="text" name="marca">
-                        </div>
+            <div class="dropdown-menu"></div>
+        </div>
 
-                        <!-- Técnicos -->
-                        <div class="form-group">
-                            <label>Voltagem (V 3Phz-)</label>
-                            <input type="number" step="0.1" name="potencia">
-                        </div>
+        <!-- BOTÃO NOVO -->
+        <button class="new-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-plus-icon lucide-circle-plus"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
+            Novo Compressor
+        </button>
+    </div>
+</header>
 
-                        <div class="form-group">
-                            <label>Frequencia (Hz)</label>
-                            <input type="number" name="tensao">
-                        </div>
+<!-- ESTADO VAZIO -->
+<main>
+    <div class="empty-state">
+        <h2>Nenhum compressor selecionado</h2>
+        <p>Selecione um compressor ou crie um novo para começar</p>
+    </div>
+</main>
 
-                        <div class="form-group">
-                            <label>Corrente (A máx)</label>
-                            <input type="number" step="0.1" name="corrente">
-                        </div>
+<!-- MODAL -->
+<div class="modal" id="modal">
+    <div class="modal-content">
 
-                        <div class="form-group">
-                            <label>Corrente Motor Bloq. (A Y)</label>
-                            <input type="text" name="gas">
-                        </div>
+        <div class="modal-header">
+            <h2>Novo Compressor</h2>
+            <p class="form-hint">
+                Preencha os dados para cadastrar um novo compressor
+            </p>
+        </div>
 
-                        <div class="form-group">
-                            <label>Corrente Motor Bloq. (A YY)</label>
-                            <input type="text" name="gas">
-                        </div>
+        <form class="form">
 
-                        <div class="form-group">
-                            <label>Vol. Desl. (m³/h)</label>
-                            <input type="text" name="gas">
-                        </div>
+            <!-- IDENTIFICAÇÃO -->
+            <div class="section">
+                <h4>Identificação</h4>
 
-                        <div class="form-group">
-                            <label>Rotação (rpm)</label>
-                            <input type="text" name="gas">
-                        </div>
-                    </form>
-                    <div class="new-menu-actions">
-                        <button class="new-create-btn">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-badge-plus-icon lucide-badge-plus"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><line x1="12" x2="12" y1="8" y2="16"/><line x1="8" x2="16" y1="12" y2="12"/></svg>
-                            Criar
-                        </button>
-                        <button class="new-close-btn">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-x-icon lucide-circle-x"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>
-                            Cancelar
-                        </button>
+                <div class="grid">
+                    <div class="form-group">
+                        <label>Modelo *</label>
+                        <input type="text" name="modelo" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Marca *</label>
+                        <input type="text" name="marca" required>
                     </div>
                 </div>
             </div>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        
-    </div>
-    <script src="./script.js"></script>
-</body>
 
+            <!-- DADOS TÉCNICOS -->
+            <div class="section">
+                <h4>Dados Técnicos</h4>
+
+                <div class="grid">
+                    <div class="form-group">
+                        <label>Voltagem (V)</label>
+                        <input type="number" step="0.1">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Frequência (Hz)</label>
+                        <input type="number">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Corrente (A máx)</label>
+                        <input type="number" step="0.1">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Motor Bloq (Y)</label>
+                        <input type="text">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Motor Bloq (YY)</label>
+                        <input type="text">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Vazão (m³/h)</label>
+                        <input type="text">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Rotação (RPM)</label>
+                        <input type="text">
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+        <!-- AÇÕES -->
+        <div class="modal-actions">
+            <button type="button" class="cancel">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-x-icon lucide-circle-x"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>
+                Cancelar
+            </button>
+
+            <button type="submit" class="create">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-plus-icon lucide-circle-plus"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
+                Criar Compressor
+            </button>
+        </div>
+
+    </div>
+</div>
+
+<script src="./script.js"></script>
+
+</body>
 </html>
