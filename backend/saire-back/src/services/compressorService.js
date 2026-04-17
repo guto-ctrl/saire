@@ -1,30 +1,30 @@
 const prisma = require('../lib/prisma')
 
 async function listar() {
-    return prisma.refrigerador.findMany()
+    return prisma.compressor.findMany()
 }
 
 async function buscarPorId(id) {
-    return prisma.refrigerador.findUnique({
+    return prisma.compressor.findUnique({
         where: { id }
     })
 }
 
 async function criar(data) {
-    return prisma.refrigerador.create({
+    return prisma.compressor.create({
         data
     })
 }
 
 async function atualizar(id, data) {
-    return prisma.refrigerador.update({
+    return prisma.compressor.update({
         where: { id },
         data
     })
 }
 
 async function deletar(id) {
-    return prisma.refrigerador.delete({
+    return prisma.compressor.delete({
         where: { id }
     })
 }
