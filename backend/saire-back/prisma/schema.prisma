@@ -16,6 +16,7 @@ generator client {
 model Compressor {
   id            Int              @id @default(autoincrement())
   modelo        String
+  marca         String
   createdAt     DateTime         @default(now())
 
   voltagem                 Int?
@@ -30,14 +31,18 @@ model Compressor {
   etiquetas     Etiqueta[]
 }
 
-model Documento {
-  id               Int       @id @default(autoincrement())
-  compressorId     Int
+model Checklist {
+  id            Int      @id @default(autoincrement())
+  compressorId  Int
 
-  url              String
-  nomeArquivo      String?
+  montador      String?
+  data          DateTime?
+  observacao    String?
 
-  createdAt        DateTime  @default(now())
+  url           String?  // opcional (foto do papel)
+  nomeArquivo   String?
+
+  createdAt     DateTime @default(now())
 
   compressor Compressor @relation(fields: [compressorId], references: [id])
 
@@ -49,7 +54,7 @@ model Etiqueta {
   compressorId     Int
   documentoId      Int
 
-  numeroSerie      String
+  numeroSerie      String @unique
   qrCodeUrl        String?
 
   createdAt        DateTime @default(now())
