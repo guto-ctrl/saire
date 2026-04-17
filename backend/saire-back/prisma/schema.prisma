@@ -27,7 +27,7 @@ model Compressor {
   volumeDeslocamento       Float?
   rotacao                  Int?
 
-  documentos    Documento[]
+  checklists    Checklist[]
   etiquetas     Etiqueta[]
 }
 
@@ -45,14 +45,15 @@ model Checklist {
   createdAt     DateTime @default(now())
 
   compressor Compressor @relation(fields: [compressorId], references: [id])
-
+  etiqueta Etiqueta[]
+  
   @@index([compressorId])
 }
 
 model Etiqueta {
   id               Int      @id @default(autoincrement())
   compressorId     Int
-  documentoId      Int
+  checklistId      Int
 
   numeroSerie      String @unique
   qrCodeUrl        String?
@@ -60,7 +61,7 @@ model Etiqueta {
   createdAt        DateTime @default(now())
 
   compressor Compressor @relation(fields: [compressorId], references: [id])
-  documento  Documento  @relation(fields: [documentoId], references: [id])
+  checklist  Checklist  @relation(fields: [checklistId], references: [id])
 
   @@index([compressorId])
 }
