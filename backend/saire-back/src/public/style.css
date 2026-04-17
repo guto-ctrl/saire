@@ -125,6 +125,8 @@ button svg {
     pointer-events: none;
     transform: translateY(-5px);
     transition: 0.2s;
+    max-height: 320px;
+    overflow-y: auto;
 }
 
 .dropdown.open .dropdown-menu {
@@ -133,14 +135,58 @@ button svg {
     transform: translateY(0);
 }
 
+.dropdown-menu::-webkit-scrollbar {
+    width: 6px;
+}
+
+.dropdown-menu::-webkit-scrollbar-thumb {
+    background: #D1D5DB;
+    border-radius: 4px;
+}
+
 .item {
-    padding: 10px;
-    border-radius: 6px;
+    display: flex;
+    align-items: center;
+
+    padding: 10px 12px;
+    border-radius: 8px;
+
+    font-size: 14px;
+    color: #111827;
+
     cursor: pointer;
+
+    background: white;
+    border: 1px solid transparent;
+
+    transition: all 0.15s ease;
 }
 
 .item:hover {
     background: #F3F4F6;
+    border-color: #E5E7EB;
+    transform: translateX(1.5px);
+}
+
+.item:active {
+    transform: scale(0.98);
+    background: #E5E7EB;
+}
+
+.item + .item {
+    margin-top: 4px;
+}
+
+.item-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.item-sub {
+    font-size: 12px;
+    color: #6B7280;
+    line-height: 1.4;
 }
 
 /* BOTÃO NOVO */
