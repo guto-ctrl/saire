@@ -4,9 +4,8 @@ const swaggerUI = require('@fastify/swagger-ui')
 const multipart = require('@fastify/multipart')
 
 // Importando rotas
-const refrigeradorRoutes = require('./routes/CompressorRoutes')
-const especificacaoRoutes = require('./routes/especificacaoRoutes')
-const documentoRoutes = require('./routes/documentoRoutes')
+const compressorRoutes = require('./routes/CompressorRoutes')
+const checklistRoutes = require('./routes/checklistRoutes')
 const staticRoutes = require('./routes/staticRoute')
 
 const fastify = Fastify({ logger: true })
@@ -26,7 +25,13 @@ fastify.register(swagger, {
     }
 })
 fastify.register(swaggerUI, {
-    routePrefix: '/swagger'
+    routePrefix: '/swagger',
+    uiConfig: {
+        docExpansion: 'list',
+        deepLinking: false
+    },
+    staticCSP: true,
+    transformStaticCSP: (header) => header
 })
 
 // Pro envio dos arquivos pra supabase
@@ -40,26 +45,21 @@ fastify.register(multipart, {
 // Pra entregar a página estática
 const path = require('path')
 fastify.register(require('@fastify/static'), {
-  root: path.join(__dirname, 'public'),
-  prefix: '/public/',
-  decorateReply: false
+    root: path.join(__dirname, 'public'),
+    prefix: '/public',
+    decorateReply: false
 });
 
 // Injetando as rotas
-fastify.register(refrigeradorRoutes)
-fastify.register(especificacaoRoutes)
-fastify.register(documentoRoutes)
+fastify.register(compressorRoutes)
+fastify.register(checklistRoutes)
 fastify.register(staticRoutes)
-
-// Rota teste
-fastify.get('/ok', async (request, reply) => {
-    return { status: 'ok' }
-})
 
 
 // Start do server
 const start = async () => {
     try {
+        await fastify.ready()
         await fastify.listen({ port: _port, host: `${_host}` })
         console.log('Servidor rodando em http://localhost:3000')
     } catch (err) {
