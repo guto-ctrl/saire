@@ -6,17 +6,11 @@ async function routes(fastify) {
   fastify.get('/compressores', {
     schema: {
       tags: ['Compressor'],
-      description: 'Lista todos',
+      description: 'Lista todos os compressores',
       response: {
         200: {
           type: 'array',
-          items: {
-            type: 'object',
-            properties: {
-              id: { type: 'number' },
-              modelo: { type: 'string' }
-            }
-          }
+          items: compressorSchema()
         }
       }
     }
@@ -29,17 +23,13 @@ async function routes(fastify) {
     schema: {
       tags: ['Compressor'],
       description: 'Busca por ID',
-      params: {
-        type: 'object',
-        properties: {
-          id: { type: 'number' }
-        }
+      params: idParam(),
+      response: {
+        200: compressorSchema()
       }
     }
   }, async (request, reply) => {
-    const id = Number(request.params.id)
-
-    const item = await service.buscarPorId(id)
+    const item = await service.buscarPorId(request.params.id)
 
     if (!item) {
       return reply.code(404).send({ message: 'Não encontrado' })
@@ -52,42 +42,31 @@ async function routes(fastify) {
   fastify.post('/compressores', {
     schema: {
       tags: ['Compressor'],
-      description: 'Cria',
-      body: {
-        type: 'object',
-        required: ['modelo'],
-        properties: {
-          modelo: { type: 'string' }
-        }
+      description: 'Cria compressor',
+      body: compressorCreateSchema(),
+      response: {
+        201: compressorSchema()
       }
     }
-  }, async (request) => {
-    return service.criar(request.body)
+  }, async (request, reply) => {
+    const item = await service.criar(request.body)
+    return reply.code(201).send(item)
   })
 
   // ATUALIZAR
   fastify.put('/compressores/:id', {
     schema: {
       tags: ['Compressor'],
-      description: 'Atualiza',
-      params: {
-        type: 'object',
-        properties: {
-          id: { type: 'number' }
-        }
-      },
-      body: {
-        type: 'object',
-        properties: {
-          modelo: { type: 'string' }
-        }
+      description: 'Atualiza compressor',
+      params: idParam(),
+      body: compressorUpdateSchema(),
+      response: {
+        200: compressorSchema()
       }
     }
   }, async (request, reply) => {
-    const id = Number(request.params.id)
-
     try {
-      return await service.atualizar(id, request.body)
+      return await service.atualizar(request.params.id, request.body)
     } catch {
       return reply.code(404).send({ message: 'Não encontrado' })
     }
@@ -97,24 +76,68 @@ async function routes(fastify) {
   fastify.delete('/compressores/:id', {
     schema: {
       tags: ['Compressor'],
-      description: 'Deleta',
-      params: {
-        type: 'object',
-        properties: {
-          id: { type: 'number' }
-        }
-      }
+      description: 'Remove compressor',
+      params: idParam()
     }
   }, async (request, reply) => {
-    const id = Number(request.params.id)
-
     try {
-      await service.deletar(id)
-      return { ok: true }
+      await service.deletar(request.params.id)
+      return reply.code(204).send()
     } catch {
       return reply.code(404).send({ message: 'Não encontrado' })
     }
   })
+}
+function idParam() {
+  return {
+    type: 'object',
+    required: ['id'],
+    properties: {
+      id: { type: 'integer' }
+    }
+  }
+}
+
+function compressorSchema() {
+  return {
+    type: 'object',
+    properties: {
+      id: { type: 'integer' },
+      modelo: { type: 'string' },
+      marca: { type: 'string' },
+      voltagem: { type: 'integer', nullable: true },
+      frequencia: { type: 'integer', nullable: true },
+      corrente: { type: 'number', nullable: true },
+      createdAt: { type: 'string', format: 'date-time' }
+    }
+  }
+}
+
+function compressorCreateSchema() {
+  return {
+    type: 'object',
+    required: ['modelo', 'marca'],
+    properties: {
+      modelo: { type: 'string' },
+      marca: { type: 'string' },
+      voltagem: { type: 'integer' },
+      frequencia: { type: 'integer' },
+      corrente: { type: 'number' }
+    }
+  }
+}
+
+function compressorUpdateSchema() {
+  return {
+    type: 'object',
+    properties: {
+      modelo: { type: 'string' },
+      marca: { type: 'string' },
+      voltagem: { type: 'integer' },
+      frequencia: { type: 'integer' },
+      corrente: { type: 'number' }
+    }
+  }
 }
 
 module.exports = routes
