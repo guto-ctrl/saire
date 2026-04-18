@@ -61,7 +61,7 @@ model Etiqueta {
   createdAt        DateTime @default(now())
 
   compressor Compressor @relation(fields: [compressorId], references: [id])
-  checklist  Checklist  @relation(fields: [checklistId], references: [id])
+  checklist  Checklist  @relation(fields: [checklistId], references: [id], onDelete: Cascade)
 
   @@index([compressorId])
 }
