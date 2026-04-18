@@ -241,7 +241,8 @@ button svg {
 
 /* MODAL */
 
-.modal {
+.modal,
+.modal2 {
     position: fixed;
     inset: 0;
 
@@ -256,7 +257,8 @@ button svg {
     transition: 0.2s;
 }
 
-.modal.open {
+.modal.open,
+.modal2.open {
     opacity: 1;
     pointer-events: auto;
 }

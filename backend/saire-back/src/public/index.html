@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,147 +13,212 @@
 
 <body>
 
-<!-- HEADER -->
-<header class="top">
-    <div class="program-infos">
-        <img src="./img/saire-icon-big.png" class="logo-programa">
-        <div>
-            <h2>Saire</h2>
-            <p>Gerenciador de etiquetas</p>
-        </div>
-    </div>
-
-    <div class="actions">
-        <!-- SELECT -->
-        <div class="dropdown">
-            <button class="btn-select">
-                <div class="left">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu-icon lucide-menu"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg>
-
-                    <span class="selected-text">
-                        Selecionar Compressor
-                    </span>
-                </div>
-
-                <span class="material-icons arrow">expand_more</span>
-            </button>
-
-            <div class="dropdown-menu"></div>
+    <!-- HEADER -->
+    <header class="top">
+        <div class="program-infos">
+            <img src="./img/saire-icon-big.png" class="logo-programa">
+            <div>
+                <h2>Saire</h2>
+                <p>Gerenciador de etiquetas</p>
+            </div>
         </div>
 
-        <!-- BOTÃO NOVO COMPRESSOR -->
-        <button class="new-btn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-plus-icon lucide-circle-plus"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
-            Novo Compressor
-        </button>
+        <div class="actions">
+            <!-- SELECT -->
+            <div class="dropdown">
+                <button class="btn-select">
+                    <div class="left">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-menu-icon lucide-menu">
+                            <path d="M4 5h16" />
+                            <path d="M4 12h16" />
+                            <path d="M4 19h16" />
+                        </svg>
 
-        <!-- GERENCIAR DOCUMENTOS -->
-         <button class="checklist-btn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard-list-icon lucide-clipboard-list"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg>
-            Cheklists
-         </button>
-    </div>
-</header>
-
-<!-- ESTADO VAZIO -->
-<main>
-    <div class="empty-state">
-        <h2>Nenhum compressor selecionado</h2>
-        <p>Selecione um compressor ou crie um novo para começar</p>
-    </div>
-</main>
-
-<!-- MODAL -->
-<div class="modal" id="modal">
-    <div class="modal-content">
-
-        <div class="modal-header">
-            <h2>Novo Compressor</h2>
-            <p class="form-hint">
-                Preencha os dados para cadastrar um novo compressor
-            </p>
-        </div>
-
-        <form class="form">
-
-            <!-- IDENTIFICAÇÃO -->
-            <div class="section">
-                <h4>Identificação</h4>
-
-                <div class="grid">
-                    <div class="form-group">
-                        <label>Modelo *</label>
-                        <input type="text" name="modelo" required>
+                        <span class="selected-text">
+                            Selecionar Compressor
+                        </span>
                     </div>
 
-                    <div class="form-group">
-                        <label>Marca *</label>
-                        <input type="text" name="marca" required>
-                    </div>
-                </div>
+                    <span class="material-icons arrow">expand_more</span>
+                </button>
+
+                <div class="dropdown-menu"></div>
             </div>
 
-            <!-- DADOS TÉCNICOS -->
-            <div class="section">
-                <h4>Dados Técnicos</h4>
-
-                <div class="grid">
-                    <div class="form-group">
-                        <label>Voltagem (V)</label>
-                        <input type="number" step="0.1">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Frequência (Hz)</label>
-                        <input type="number">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Corrente (A máx)</label>
-                        <input type="number" step="0.1">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Motor Bloq (Y)</label>
-                        <input type="text">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Motor Bloq (YY)</label>
-                        <input type="text">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Vazão (m³/h)</label>
-                        <input type="text">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Rotação (RPM)</label>
-                        <input type="text">
-                    </div>
-                </div>
-            </div>
-
-        </form>
-
-        <!-- AÇÕES -->
-        <div class="modal-actions">
-            <button type="button" class="cancel">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-x-icon lucide-circle-x"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>
-                Cancelar
+            <!-- BOTÃO NOVO COMPRESSOR -->
+            <button class="new-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-circle-plus-icon lucide-circle-plus">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M8 12h8" />
+                    <path d="M12 8v8" />
+                </svg>
+                Novo Compressor
             </button>
 
-            <button type="submit" class="create">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-plus-icon lucide-circle-plus"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
-                Criar Compressor
+            <!-- GERENCIAR DOCUMENTOS -->
+            <button class="checklist-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-clipboard-list-icon lucide-clipboard-list">
+                    <rect width="8" height="4" x="8" y="2" rx="1" ry="1" />
+                    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+                    <path d="M12 11h4" />
+                    <path d="M12 16h4" />
+                    <path d="M8 11h.01" />
+                    <path d="M8 16h.01" />
+                </svg>
+                Cheklists
             </button>
         </div>
+    </header>
 
+    <!-- ESTADO VAZIO -->
+    <main>
+        <div class="empty-state">
+            <h2>Nenhum compressor selecionado</h2>
+            <p>Selecione um compressor ou crie um novo para começar</p>
+        </div>
+    </main>
+
+    <!-- MODAL -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h2>Novo Compressor</h2>
+                <p class="form-hint">
+                    Preencha os dados para cadastrar um novo compressor
+                </p>
+            </div>
+
+            <form class="form">
+
+                <!-- IDENTIFICAÇÃO -->
+                <div class="section">
+                    <h4>Identificação</h4>
+
+                    <div class="grid">
+                        <div class="form-group">
+                            <label>Modelo *</label>
+                            <input type="text" name="modelo" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Marca *</label>
+                            <input type="text" name="marca" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DADOS TÉCNICOS -->
+                <div class="section">
+                    <h4>Dados Técnicos</h4>
+
+                    <div class="grid">
+                        <div class="form-group">
+                            <label>Voltagem (V)</label>
+                            <input type="number" step="0.1">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Frequência (Hz)</label>
+                            <input type="number">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Corrente (A máx)</label>
+                            <input type="number" step="0.1">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Motor Bloq (Y)</label>
+                            <input type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Motor Bloq (YY)</label>
+                            <input type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Vazão (m³/h)</label>
+                            <input type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Rotação (RPM)</label>
+                            <input type="text">
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+
+            <!-- AÇÕES -->
+            <div class="modal-actions">
+                <button type="button" class="cancel">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-circle-x-icon lucide-circle-x">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="m15 9-6 6" />
+                        <path d="m9 9 6 6" />
+                    </svg>
+                    Cancelar
+                </button>
+
+                <button type="submit" class="create">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-circle-plus-icon lucide-circle-plus">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M8 12h8" />
+                        <path d="M12 8v8" />
+                    </svg>
+                    Criar Compressor
+                </button>
+            </div>
+
+        </div>
     </div>
-</div>
 
-<script src="./script.js"></script>
+    <!-- MODAL 2 -->
+    <div class="modal2" id="modal2">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h2>Checklists</h2>
+                <p class="form-hint">
+                    Gerencie todos os checklists que você pode anexar a uma etiqueta
+                </p>
+            </div>
+            
+            <div class="checklist-list">
+            </div>
+
+            <!-- AÇÕES -->
+            <div class="modal-actions">
+                <button type="button" class="cancel">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-circle-x-icon lucide-circle-x">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="m15 9-6 6" />
+                        <path d="m9 9 6 6" />
+                    </svg>
+                    Sair
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
 
 </body>
+
 </html>
