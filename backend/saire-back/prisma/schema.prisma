@@ -14,12 +14,12 @@ generator client {
 }
 
 model Compressor {
-  id            Int              @id @default(autoincrement())
-  modelo        String
-  marca         String
-  createdAt     DateTime         @default(now())
+  id                      Int              @id @default(autoincrement())
+  modelo                  String
+  marca                   String
+  createdAt               DateTime         @default(now())
 
-  voltagem                 Int?
+  voltagem                 String?
   frequencia               Int?
   corrente                 Float?
   correnteBloqueadoY       Float?
@@ -35,33 +35,64 @@ model Checklist {
   id            Int      @id @default(autoincrement())
   compressorId  Int
 
-  montador      String?
+  // ===== SNAPSHOT DO COMPRESSOR (histórico) =====
   data          DateTime?
-  observacao    String?
+  montador      String?
+  cliente       String?
+  ficha         BigInt?
 
-  url           String?  // opcional (foto do papel)
-  nomeArquivo   String?
+  modelo        String?
+  serie         String?
+  hp            Float?
+  voltagem      String?
+
+
+  // ==== AMPERAGENS ====
+  amperagem1Sem Float?
+  amperagem2Sem Float?
+  amperagem3Sem Float?
+
+  amperagem1Com Float?
+  amperagem2Com Float?
+  amperagem3Com Float?
+
+  // ===== PRESSÕES =====
+  pressaoAltaA  Float?
+  pressaoAltaB  Float?
+  pressaoBaixaA Float?
+  pressaoBaixaB Float?
+
+  // ===== ITENS (checklist) =====
+  bobina            Boolean @default(false)
+  placa             Boolean @default(false)
+  pistao            Boolean @default(false)
+  biela             Boolean @default(false)
+  bucha             Boolean @default(false)
+  sisRetOleo        Boolean @default(false)
+  valRegPreOleo     Boolean @default(false)
+  valSeg37bar       Boolean @default(false)
+
+  // ===== OUTROS =====
+  testeVazamento    Boolean @default(false)
+  observacao        String?
+
+  assinaturaMontador String?
+  assinaturaRevisor  String?
+
+  url           String?  // foto do papel
 
   createdAt     DateTime @default(now())
 
   compressor Compressor @relation(fields: [compressorId], references: [id])
-  etiqueta Etiqueta[]
-  
+
   @@index([compressorId])
 }
 
 model Etiqueta {
   id               Int      @id @default(autoincrement())
-  compressorId     Int
   checklistId      Int
-
-  numeroSerie      String @unique
-  qrCodeUrl        String?
 
   createdAt        DateTime @default(now())
 
-  compressor Compressor @relation(fields: [compressorId], references: [id])
   checklist  Checklist  @relation(fields: [checklistId], references: [id], onDelete: Cascade)
-
-  @@index([compressorId])
 }
