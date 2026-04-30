@@ -14,6 +14,10 @@ const formCompressor = document.querySelector('.form') // Form capturado
 const modal2 = document.getElementById('modal2')
 const checkBtn = document.querySelector('.checklist-btn')
 const checklistContainer = modal2.querySelector('.checklist-list')
+const newChecklistBtn = document.getElementById('.new-checklist-btn');
+const checklistFormModal = document.getElementById('modal-checklist-form');
+const checklistForm = document.getElementById('form-checklist');
+let editingChecklistId = null;
 
 const modalEditCompressor = document.getElementById('modal-edit-compressor')
 const formEdit = modalEditCompressor.querySelector('.form-edit')
@@ -314,7 +318,10 @@ formEdit.addEventListener('submit', async (e) => {
     }
 })
 
+// Evento para 
+
 // Inicializa os modais
+setupModal(null, checklistFormModal)
 setupModal(newBtn, modal)
 setupModal(checkBtn, modal2, loadChecklists)
 setupModal(null, modalEditCompressor)

@@ -14,38 +14,37 @@ generator client {
 }
 
 model Compressor {
-  id                      Int              @id @default(autoincrement())
-  modelo                  String
-  marca                   String
-  createdAt               DateTime         @default(now())
+  id        Int      @id @default(autoincrement())
+  modelo    String
+  marca     String
+  createdAt DateTime @default(now())
 
-  voltagem                 String?
-  frequencia               Int?
-  corrente                 Float?
-  correnteBloqueadoY       Float?
-  correnteBloqueadoYY      Float?
-  volumeDeslocamento       Float?
-  rotacao                  Int?
+  voltagem            String?
+  frequencia          Int?
+  corrente            Float?
+  correnteBloqueadoY  Float?
+  correnteBloqueadoYY Float?
+  volumeDeslocamento  Float?
+  rotacao             Int?
 
-  checklists    Checklist[]
-  etiquetas     Etiqueta[]
+  checklists Checklist[]
+  // etiquetas     Etiqueta[]
 }
 
 model Checklist {
-  id            Int      @id @default(autoincrement())
-  compressorId  Int
+  id           Int @id @default(autoincrement())
+  compressorId Int
 
   // ===== SNAPSHOT DO COMPRESSOR (histórico) =====
-  data          DateTime?
-  montador      String?
-  cliente       String?
-  ficha         BigInt?
+  data     DateTime?
+  montador String?
+  cliente  String?
+  ficha    BigInt?
 
-  modelo        String?
-  serie         String?
-  hp            Float?
-  voltagem      String?
-
+  modelo   String?
+  serie    String?
+  hp       Float?
+  voltagem String?
 
   // ==== AMPERAGENS ====
   amperagem1Sem Float?
@@ -63,36 +62,37 @@ model Checklist {
   pressaoBaixaB Float?
 
   // ===== ITENS (checklist) =====
-  bobina            Boolean @default(false)
-  placa             Boolean @default(false)
-  pistao            Boolean @default(false)
-  biela             Boolean @default(false)
-  bucha             Boolean @default(false)
-  sisRetOleo        Boolean @default(false)
-  valRegPreOleo     Boolean @default(false)
-  valSeg37bar       Boolean @default(false)
+  bobina        Boolean @default(false)
+  placa         Boolean @default(false)
+  pistao        Boolean @default(false)
+  biela         Boolean @default(false)
+  bucha         Boolean @default(false)
+  sisRetOleo    Boolean @default(false)
+  valRegPreOleo Boolean @default(false)
+  valSeg37bar   Boolean @default(false)
 
   // ===== OUTROS =====
-  testeVazamento    Boolean @default(false)
-  observacao        String?
+  testeVazamento Boolean @default(false)
+  observacao     String?
 
   assinaturaMontador String?
   assinaturaRevisor  String?
 
-  url           String?  // foto do papel
+  url String? // foto do papel
 
-  createdAt     DateTime @default(now())
+  createdAt DateTime @default(now())
 
   compressor Compressor @relation(fields: [compressorId], references: [id])
+  etiquetas  Etiqueta[]
 
   @@index([compressorId])
 }
 
 model Etiqueta {
-  id               Int      @id @default(autoincrement())
-  checklistId      Int
+  id          Int @id @default(autoincrement())
+  checklistId Int
 
-  createdAt        DateTime @default(now())
+  createdAt DateTime @default(now())
 
-  checklist  Checklist  @relation(fields: [checklistId], references: [id], onDelete: Cascade)
+  checklist Checklist @relation(fields: [checklistId], references: [id], onDelete: Cascade)
 }

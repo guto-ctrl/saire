@@ -5,7 +5,7 @@ async function listar() {
   return prisma.checklist.findMany({
     include: {
       compressor: true,
-      etiqueta: true
+      etiquetas: true
     }
   })
 }
@@ -16,7 +16,7 @@ async function buscarPorId(id) {
     where: { id },
     include: {
       compressor: true,
-      etiqueta: true
+      etiquetas: true
     }
   })
 }
@@ -26,7 +26,7 @@ async function obterPorCompressor(compressorId) {
   return prisma.checklist.findMany({
     where: { compressorId },
     include: {
-      etiqueta: true
+      etiquetas: true
     }
   })
 }

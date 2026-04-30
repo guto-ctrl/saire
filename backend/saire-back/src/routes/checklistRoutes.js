@@ -119,7 +119,7 @@ function checklistSchema() {
       data: { type: 'string', format: 'date-time', nullable: true },
       observacao: { type: 'string', nullable: true },
       url: { type: 'string', nullable: true },
-      nomeArquivo: { type: 'string', nullable: true },
+      // nomeArquivo: { type: 'string', nullable: true },
       createdAt: { type: 'string', format: 'date-time' }
     }
   }

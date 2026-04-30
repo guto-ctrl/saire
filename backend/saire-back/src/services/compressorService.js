@@ -4,8 +4,11 @@ const prisma = require('../lib/prisma')
 async function listar() {
   return prisma.compressor.findMany({
     include: {
-      checklists: true,
-      etiquetas: true
+      checklists: {
+        include: {
+          etiquetas: true
+        }
+      }
     }
   })
 }
