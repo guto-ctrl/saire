@@ -9,9 +9,10 @@
 :root {
     /* Cores de Marca/Ações */
     --primary: #2563EB;
+    --primary-new-checklist: ;
     --primary-hover: #1D4ED8;
     --success: #0da00d;
-    --success-hover: #00aa00;
+    --success-hover: #0f910f;
     --danger: #DC2626;
 
     /* Textos */
@@ -258,7 +259,8 @@ button svg {
 
 /* MODAL */
 .modal,
-.modal2 {
+.modal2, 
+.modal-edit-compressor {
     position: fixed;
     inset: 0;
 
@@ -274,7 +276,8 @@ button svg {
 }
 
 .modal.open,
-.modal2.open {
+.modal2.open,
+.modal-edit-compressor.open {
     opacity: 1;
     pointer-events: auto;
 }
@@ -376,6 +379,14 @@ input:focus {
     color: white;
     border: none;
     font-weight: 600;
+}
+
+#new-checklist-btn {
+    background-color: var(--success);
+}
+
+#new-checklist-btn:hover {
+    background-color: var(--success-hover);
 }
 
 .create:hover {

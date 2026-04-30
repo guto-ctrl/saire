@@ -49,17 +49,18 @@
 
             <!-- BOTÃO NOVO COMPRESSOR -->
             <button class="new-btn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class="lucide lucide-circle-plus-icon lucide-circle-plus">
                     <circle cx="12" cy="12" r="10" />
                     <path d="M8 12h8" />
                     <path d="M12 8v8" />
-                </svg>
+                </svg> -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-list-plus-icon lucide-list-plus"><path d="M16 5H3"/><path d="M11 12H3"/><path d="M16 19H3"/><path d="M18 9v6"/><path d="M21 12h-6"/></svg>
                 Novo Compressor
             </button>
 
-            <!-- GERENCIAR DOCUMENTOS -->
+            <!-- GERENCIAR CHECKLISTS -->
             <button class="checklist-btn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -121,72 +122,72 @@
                     <div class="grid">
                         <div class="form-group">
                             <label>Voltagem (V)</label>
-                            <input type="number" step="0.1">
+                            <input type="text" name="voltagem" nstep="0.1">
                         </div>
 
                         <div class="form-group">
                             <label>Frequência (Hz)</label>
-                            <input type="number">
+                            <input type="number" name="frequencia">
                         </div>
 
                         <div class="form-group">
                             <label>Corrente (A máx)</label>
-                            <input type="number" step="0.1">
+                            <input type="number" step="0.1" name="corrente">
                         </div>
 
                         <div class="form-group">
                             <label>Motor Bloq (Y)</label>
-                            <input type="text">
+                            <input type="text" name="correnteBloqueadoY">
                         </div>
 
                         <div class="form-group">
                             <label>Motor Bloq (YY)</label>
-                            <input type="text">
+                            <input type="text" name="correnteBloqueadoYY">
                         </div>
 
                         <div class="form-group">
                             <label>Vazão (m³/h)</label>
-                            <input type="text">
+                            <input type="text" name="volumeDeslocamento">
                         </div>
 
                         <div class="form-group">
                             <label>Rotação (RPM)</label>
-                            <input type="text">
+                            <input type="text" name="rotacao">
                         </div>
                     </div>
+                </div>
+                <!-- AÇÕES -->
+                <div class="modal-actions">
+                    <button type="button" class="cancel">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-circle-x-icon lucide-circle-x">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="m15 9-6 6" />
+                            <path d="m9 9 6 6" />
+                        </svg>
+                        Cancelar
+                    </button>
+
+                    <button type="submit" class="create">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-circle-plus-icon lucide-circle-plus">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M8 12h8" />
+                            <path d="M12 8v8" />
+                        </svg>
+                        Criar Compressor
+                    </button>
                 </div>
 
             </form>
 
-            <!-- AÇÕES -->
-            <div class="modal-actions">
-                <button type="button" class="cancel">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="lucide lucide-circle-x-icon lucide-circle-x">
-                        <circle cx="12" cy="12" r="10" />
-                        <path d="m15 9-6 6" />
-                        <path d="m9 9 6 6" />
-                    </svg>
-                    Cancelar
-                </button>
-
-                <button type="submit" class="create">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="lucide lucide-circle-plus-icon lucide-circle-plus">
-                        <circle cx="12" cy="12" r="10" />
-                        <path d="M8 12h8" />
-                        <path d="M12 8v8" />
-                    </svg>
-                    Criar Compressor
-                </button>
-            </div>
 
         </div>
     </div>
 
-    <!-- MODAL 2 -->
+    <!-- MODAL CHECKLISTS -->
     <div class="modal2" id="modal2">
         <div class="modal-content">
 
@@ -196,7 +197,7 @@
                     Gerencie todos os checklists que você pode anexar a uma etiqueta
                 </p>
             </div>
-            
+
             <div class="checklist-list">
             </div>
 
@@ -212,7 +213,88 @@
                     </svg>
                     Sair
                 </button>
+                <button type="button" class="create" id="new-checklist-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-plus-icon lucide-circle-plus"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
+                    Novo Checklist
+                </button>
             </div>
+
+        </div>
+    </div>
+
+    <!-- MODAL EDIÇÃO COMPRESSOR -->
+    <div class="modal-edit-compressor" id="modal-edit-compressor">
+        <div class="modal-content">
+
+            <form class="form-edit">
+                <!-- IDENTIFICAÇÃO -->
+                <div class="section">
+                    <h4>Identificação</h4>
+
+                    <div class="grid">
+                        <div class="form-group">
+                            <label>Modelo *</label>
+                            <input type="text" name="modelo" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Marca *</label>
+                            <input type="text" name="marca" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DADOS TÉCNICOS -->
+                <div class="section">
+                    <h4>Dados Técnicos</h4>
+
+                    <div class="grid">
+                        <div class="form-group">
+                            <label>Voltagem (V)</label>
+                            <input type="text" name="voltagem" step="0.1">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Frequência (Hz)</label>
+                            <input type="number" name="frequencia">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Corrente (A máx)</label>
+                            <input type="number" name="corrente" step="0.1">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Motor Bloq (Y)</label>
+                            <input type="text" name="correnteBloqueadoY">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Motor Bloq (YY)</label>
+                            <input type="text" name="correnteBloqueadoYY">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Vazão (m³/h)</label>
+                            <input type="text" name="volumeDeslocamento">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Rotação (RPM)</label>
+                            <input type="text" name="rotacao">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-actions" id="modal-actions">
+                    <button type="button" class="cancel">
+                        Cancelar
+                    </button>
+    
+                    <button type="submit" class="save">
+                        Atualizar
+                    </button>
+                </div>
+            </form>
 
         </div>
     </div>

@@ -105,9 +105,16 @@ function compressorSchema() {
       id: { type: 'integer' },
       modelo: { type: 'string' },
       marca: { type: 'string' },
-      voltagem: { type: 'integer', nullable: true },
+
+      voltagem: { type: 'string', nullable: true }, // 👈 cuidado aqui
       frequencia: { type: 'integer', nullable: true },
       corrente: { type: 'number', nullable: true },
+
+      correnteBloqueadoY: { type: 'number', nullable: true },
+      correnteBloqueadoYY: { type: 'number', nullable: true },
+      volumeDeslocamento: { type: 'number', nullable: true },
+      rotacao: { type: 'integer', nullable: true },
+
       createdAt: { type: 'string', format: 'date-time' }
     }
   }
@@ -120,9 +127,15 @@ function compressorCreateSchema() {
     properties: {
       modelo: { type: 'string' },
       marca: { type: 'string' },
-      voltagem: { type: 'integer' },
+
+      voltagem: { type: 'string' },
       frequencia: { type: 'integer' },
-      corrente: { type: 'number' }
+      corrente: { type: 'number' },
+
+      correnteBloqueadoY: { type: 'number' },
+      correnteBloqueadoYY: { type: 'number' },
+      volumeDeslocamento: { type: 'number' },
+      rotacao: { type: 'integer' }
     }
   }
 }
