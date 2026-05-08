@@ -36,7 +36,7 @@ namespace backend.Controllers
         }
 
         // Método Post
-        [HttpPost]
+        [HttpPost("{id}")]
         public async Task<IActionResult> Create([FromBody] CompressorPostDto dto)
         {
 
@@ -51,7 +51,7 @@ namespace backend.Controllers
         }
 
         // Método Patch
-        [HttpPatch]
+        [HttpPatch("{id}")]
         public async Task<IActionResult> Patch(int id, [FromBody] CompressorPatchDto dto)
         {
             var compressor = await _service.UpdateAsync(id, dto);
@@ -65,8 +65,8 @@ namespace backend.Controllers
         }
 
         // Método Delete
-        [HttpDelete]
-        public async Task<IActionResult> Patch(int id)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
         {
             var compressor = await _service.DeleteAsync(id);
             if (compressor == null)
@@ -74,6 +74,8 @@ namespace backend.Controllers
                 return NotFound();
             }
             return Ok(compressor);
+            // futuramente ⬇️
+            // return NoContent();
         }
     }
 }

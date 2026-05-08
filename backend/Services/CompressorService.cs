@@ -50,7 +50,7 @@ namespace backend.Services
         }
 
         // Método Patch
-        public async Task<Compressor> UpdateAsync(int id, CompressorPatchDto dto)
+        public async Task<Compressor?> UpdateAsync(int id, CompressorPatchDto dto)
         {
             var compressor = await _context.Compressores.FindAsync(id);
 
@@ -90,7 +90,7 @@ namespace backend.Services
         }
 
         // Método delete
-        public async Task<Compressor> DeleteAsync(int id)
+        public async Task<Compressor?> DeleteAsync(int id)
         {
             var compressor = await _context.Compressores.FindAsync(id);
             if (compressor == null)
