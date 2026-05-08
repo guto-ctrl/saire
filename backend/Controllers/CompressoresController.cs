@@ -63,5 +63,17 @@ namespace backend.Controllers
 
             return Ok(compressor);
         }
+
+        // Método Delete
+        [HttpDelete]
+        public async Task<IActionResult> Patch(int id)
+        {
+            var compressor = await _service.DeleteAsync(id);
+            if (compressor == null)
+            {
+                return NotFound();
+            }
+            return Ok(compressor);
+        }
     }
 }

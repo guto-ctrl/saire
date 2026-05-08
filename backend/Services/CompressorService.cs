@@ -88,5 +88,18 @@ namespace backend.Services
 
             return compressor;
         }
+
+        // Método delete
+        public async Task<Compressor> DeleteAsync(int id)
+        {
+            var compressor = await _context.Compressores.FindAsync(id);
+            if (compressor == null)
+            {
+                return null;
+            }
+            _context.Compressores.Remove(compressor);
+            await _context.SaveChangesAsync();
+            return compressor;
+        }
     }
 }
