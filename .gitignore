@@ -138,3 +138,10 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vscode/settings.json
+/DB.Browser.for.SQLite-v3.13.1-win64
+/backend/bin
+/backend/obj
+/backend/.vs
+/.vscode
+/backend/Migrations
+/backend/Data/Migrations
