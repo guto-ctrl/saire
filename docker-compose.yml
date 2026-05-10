@@ -1,0 +1,36 @@
+services:
+  # backend:
+  #   build:
+  #     context: ./backend
+
+  #   container_name: saire-api
+
+  #   ports:
+  #     - "8080:8080"
+
+  #   volumes:
+  #     - ./backend:/app
+
+  #   working_dir: /app
+
+  #   command: dotnet watch run --urls=http://0.0.0.0:8080
+
+
+  frontend:
+    container_name: g-nextjs
+    image: node:24
+    volumes:
+      - ./frontend/frontend:/app
+      # Volume anônimo para não sobrescrever os nodes_modules do container com os do host
+      - /app/node_modules
+    working_dir: /app
+    ports:
+      - "3000:3000"
+    environment:
+      - WATCHPACK_POLLING=true
+      - CHOKIDAR_USEPOLLING=true
+      - NEXT_TELEMETRY_DISABLED=1
+    # command: sh -c "npm install && npm run dev"
+    command: npx next dev --webpack -H 0.0.0.0
+    # depends_on:
+    #   - backend
