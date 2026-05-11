@@ -1,23 +1,22 @@
 services:
-  # backend:
-  #   build:
-  #     context: ./backend
-
-  #   container_name: saire-api
-
-  #   ports:
-  #     - "8080:8080"
-
-  #   volumes:
-  #     - ./backend:/app
-
-  #   working_dir: /app
-
-  #   command: dotnet watch run --urls=http://0.0.0.0:8080
-
+  backend:
+    container_name: saire-api
+    image: mcr.microsoft.com/dotnet/sdk:10.0
+    volumes:
+        - ./backend:/app
+        - /app/bin
+        - /app/obj
+    working_dir: /app
+    ports:
+      - "5000:5000"
+    environment:
+      - ASPNETCORE_URLS=http://0.0.0.0:5000
+      - ASPNETCORE_ENVIRONMENT=Development
+      - DOTNET_USE_POLLING_FILE_WATCHER=1
+    command: dotnet watch run --project backend.csproj --urls=http://0.0.0.0:5000
 
   frontend:
-    container_name: g-nextjs
+    container_name: saire-front
     image: node:24
     volumes:
       - ./frontend/frontend:/app
