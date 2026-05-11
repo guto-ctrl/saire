@@ -36,7 +36,7 @@ namespace backend.Controllers
         }
 
         // Método Post
-        [HttpPost("{id}")]
+        [HttpPost]
         public async Task<IActionResult> Create([FromBody] CompressorPostDto dto)
         {
 
