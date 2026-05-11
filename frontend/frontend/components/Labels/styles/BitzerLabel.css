@@ -1,0 +1,136 @@
+/* ========================
+   ETIQUETA BITZER
+======================== */
+
+main {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bitzer-label {
+  width: 760px;
+  height: 300px;
+
+  background: white;
+
+  border-radius: 18px;
+
+  padding: 20px;
+
+  box-sizing: border-box;
+
+  display: flex;
+  gap: 24px;
+
+  border: #222 1px solid; /*temp*/
+}
+
+/* LEFT SIDE */
+.bitzer-left-side {
+  width: 160px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  align-items: center;
+}
+
+.roig-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.roig-logo {
+  width: 180px;
+}
+
+.roig-info {
+  font-size: 13px;
+  font-weight: bold;
+  color: #168447;
+}
+
+.greenpoint-logo {
+  width: 180px;
+}
+
+.bitzer-brand-logo {
+  width: 140px;
+}
+
+/* RIGHT SIDE */
+.bitzer-right-side {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* TOPO */
+.bitzer-top-infos {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
+
+.compressor-main-infos {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.info-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.info-title {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.info-value {
+  font-size: 28px;
+}
+
+/* QRCode */
+.qrcode-image {
+  width: 120px;
+  height: 120px;
+}
+
+/* TABELA */
+.compressor-table-container {
+  height: 300px;
+
+  border: 1px solid #222;
+
+  border-radius: 10px;
+
+  padding: 12px;
+
+  box-sizing: border-box;
+
+}
+
+.compressor-table {
+  width: 100%;
+
+  border-collapse: collapse;
+}
+
+.compressor-table td {
+  padding: 6px 10px;
+
+  font-size: 14px;
+
+  border-bottom: 1px solid #ccc;
+}
