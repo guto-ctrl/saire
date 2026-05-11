@@ -8,28 +8,32 @@ export interface BaseModalProps {
     children?: ReactNode;
 }
 
-export function Modal({
-    isOpen,
-    onClose,
-    children
-}: BaseModalProps) {
-
+export function Modal({ isOpen, onClose, children }: BaseModalProps) {
     if (!isOpen) return null;
 
     return (
-        <div className="modal">
-
-            {/* Fundo escuro */}
+        <div className="modal-overlay" onClick={onClose}>
             <div
-                className="modal-background"
-                onClick={onClose}
-            />
-
-            {/* Conteúdo */}
-            <div className="modal-content">
+                className="modal-content"
+                onClick={(e) => e.stopPropagation()}
+            >
                 {children}
             </div>
-
         </div>
     );
 }
+
+function ModalHeader({ children }: { children: React.ReactNode }) {
+  return <div className="modal-header">{children}</div>;
+}
+Modal.Header = ModalHeader;
+
+function ModalBody({ children }: { children: React.ReactNode }) {
+  return <div className="modal-body">{children}</div>;
+}
+Modal.Body = ModalBody;
+
+function ModalFooter({ children }: { children: React.ReactNode }) {
+  return <div className="modal-footer">{children}</div>;
+}
+Modal.Footer = ModalFooter;

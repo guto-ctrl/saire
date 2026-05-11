@@ -2,10 +2,12 @@
 
 interface HeaderProps {
     onOpenNewModal: () => void;
+    onOpenSelectModal: () => void;
 }
 
 export default function Header({
     onOpenNewModal,
+    onOpenSelectModal
 }: HeaderProps) {
 
     return (
@@ -26,7 +28,11 @@ export default function Header({
             {/* Ações */}
             <div className="header-actions">
 
-                <button className="btn-select">
+                <button className="btn-select" onClick={() => {
+                    onOpenSelectModal();
+                }}
+                    
+                >
 
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
@@ -41,7 +47,6 @@ export default function Header({
                 </button>
 
                 <button className="new-btn" onClick={() => {
-                    console.log("clicou");
                     onOpenNewModal();
                 }}>
 
