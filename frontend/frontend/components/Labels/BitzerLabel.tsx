@@ -71,7 +71,7 @@ export default function BitzerLabel({
                             </span>
 
                             <span className="info-value">
-                                {compressor.modelo}
+                                {compressor.voltagemNacional}
                             </span>
                         </div>
 
@@ -91,7 +91,7 @@ export default function BitzerLabel({
                     <div className="qrcode-section">
 
                         <img
-                            src="/qrcode/example-qrcode.png"
+                            src="/qr-code/qrcode.png"
                             alt="QRCode"
                             className="qrcode-image"
                         />
@@ -102,71 +102,39 @@ export default function BitzerLabel({
 
                 {/* Grid compressor */}
                 <div className="compressor-table-container">
+                    <table className="compressor-table-horizontal">
+                        <tbody>
+                            <tr className="spec-header">
+                                <td>VOLT. NACIONAL</td>
+                                <td>FREQU.</td>
+                                <td>CORRENTE</td>
+                                <td>CORR. MOTOR Y</td>
+                                <td>CORR. MOTOR YY</td>
+                                <td>VOL. DES.</td>
+                                <td>ROTAÇÃO</td>
+                            </tr>
 
-                    <div className="compressor-grid">
+                            <tr className="spec-unit-row">
+                                <td>V</td>
+                                <td>Hz</td>
+                                <td>A</td>
+                                <td>A</td>
+                                <td>A</td>
+                                <td>m³/h</td>
+                                <td>rpm</td>
+                            </tr>
 
-                        <div className="compressor-item">
-                            <span className="item-title">
-                                Modelo
-                            </span>
-
-                            <span className="item-value">
-                                {compressor.modelo}
-                            </span>
-                        </div>
-
-                        <div className="compressor-item">
-                            <span className="item-title">
-                                Marca
-                            </span>
-
-                            <span className="item-value">
-                                {compressor.marca}
-                            </span>
-                        </div>
-
-                        <div className="compressor-item">
-                            <span className="item-title">
-                                Voltagem
-                            </span>
-
-                            <span className="item-value">
-                                {compressor.voltagemNacional ?? "-"}V
-                            </span>
-                        </div>
-
-                        <div className="compressor-item">
-                            <span className="item-title">
-                                Frequência
-                            </span>
-
-                            <span className="item-value">
-                                {compressor.frequencia ?? "-"}Hz
-                            </span>
-                        </div>
-
-                        <div className="compressor-item">
-                            <span className="item-title">
-                                Corrente
-                            </span>
-
-                            <span className="item-value">
-                                {compressor.corrente ?? "-"}A
-                            </span>
-                        </div>
-
-                        <div className="compressor-item">
-                            <span className="item-title">
-                                Rotação
-                            </span>
-
-                            <span className="item-value">
-                                {compressor.rotacao ?? "-"} RPM
-                            </span>
-                        </div>
-
-                    </div>
-
+                            <tr className="spec-value-row">
+                                <td>{compressor.voltagemNacional ?? "-"}</td>
+                                <td>{compressor.frequencia ?? "-"}</td>
+                                <td>{compressor.corrente ?? "-"}</td>
+                                <td>{compressor.correnteMotorY ?? "-"}</td>
+                                <td>{compressor.correnteMotorYY ?? "-"}</td>
+                                <td>{compressor.volumeDeslocamento ?? "-"}</td>
+                                <td>{compressor.rotacao ?? "-"}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
 
             </div>

@@ -31,5 +31,6 @@ services:
       - NEXT_TELEMETRY_DISABLED=1
     # command: sh -c "npm install && npm run dev"
     command: npx next dev --webpack -H 0.0.0.0
+    # command: sh -c "npm install && npm run dev -- --hostname 0.0.0.0 --webpack"
     # depends_on:
     #   - backend
