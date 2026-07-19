@@ -2,7 +2,7 @@
 
 ![Status do Projeto](https://img.shields.io/badge/Status-Em%20Desenvolvimento-success)
 ![React](https://img.shields.io/badge/Frontend-Next.js-blue)
-![C#](https://img.shields.io/badge/Backend-.NET_8-purple)
+![C#](https://img.shields.io/badge/Backend-.NET_10-purple)
 ![SQLite](https://img.shields.io/badge/Database-SQLite-003B57)
 
 O **Saire** é um sistema desenvolvido para otimizar e automatizar o fluxo de trabalho de geração e impressão de etiquetas de compressores. Ele atua como um facilitador, substituindo o processo manual e repetitivo (anteriormente feito em softwares como BarTender) por uma aplicação web rápida, segura e com dados validados a partir de um banco de dados local.
