@@ -36,16 +36,3 @@ O objetivo principal é aumentar a produtividade do cliente e mitigar erros de d
 
 **Infraestrutura:**
 - Docker & Docker Compose (Facilidade na orquestração dos serviços)
-
----
-
-## 🚀 Como Executar o Projeto Localmente
-
-### Pré-requisitos
-Certifique-se de ter o [Docker](https://www.docker.com/) e o [Docker Compose](https://docs.docker.com/compose/) instalados em sua máquina.
-
-### Passos
-
-1. Clone este repositório:
-   ```bash
-   git clone [https://github.com/seu-usuario/saire.git](https://github.com/seu-usuario/saire.git)
