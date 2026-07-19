@@ -12,12 +12,13 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<CompressorService>(); // Service responsável pelos compressores
 builder.Services.AddCors(options =>
     {
-        options.AddPolicy("AllowFrontend", policy =>
+        options.AddPolicy("AllowAll", policy =>
         {
             policy
                 .AllowAnyHeader()
                 .AllowAnyMethod()
-                .WithOrigins("http://localhost:3000");
+                .AllowAnyOrigin();
+                // .WithOrigins("http://localhost:3000");
         });
     });
 
@@ -37,7 +38,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors("AllowFrontend");
+app.UseCors("AllowAll");
 app.UseHttpsRedirection();
 app.MapControllers();
 
