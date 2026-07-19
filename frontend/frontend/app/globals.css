@@ -5,515 +5,553 @@
   font-style: normal;
 }
 
-/* ========================
+/* CONFIGURAÇÕES DA IMPRESSÃO */
+@media print {
+  /* Oculta a visibilidade padrão */
+  body * {
+    visibility: hidden;
+  }
+
+  /* Exibe apenas a área de impressão */
+  .print-area, .print-area * {
+    visibility: visible;
+  }
+
+  /* Remove o botão e os controles do fluxo de impressão para não ocuparem espaço */
+  button, .print-controls {
+    display: none !important;
+  }
+
+  @page {
+    size: 100mm 40mm;
+    margin: 0;
+  }
+
+  .print-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    transform: scale(0.5);
+    transform-origin: top left;
+  }
+
+  /* Remove a borda e o arredondamento da etiqueta na impressão */
+  .bitzer-label {
+    border: none !important;
+    border-radius: 0 !important;
+  }
+}
+  /* ========================
    VARIÁVEIS GLOBAIS
 ======================== */
-:root {
-  /* CORES */
-  --primary: #2574eb;
-  --primary-hover: #1d4ed8;
+  :root {
+    /* CORES */
+    --primary: #2574eb;
+    --primary-hover: #1d4ed8;
 
-  --success: #16a34a;
-  --success-hover: #15803d;
+    --success: #16a34a;
+    --success-hover: #15803d;
 
-  --danger: #dc2626;
+    --danger: #dc2626;
 
-  /* TEXTO */
-  --text-main: #111827;
-  --text-muted: #6b7280;
+    /* TEXTO */
+    --text-main: #111827;
+    --text-muted: #6b7280;
 
-  /* BACKGROUNDS */
-  --background-color: #f5f5f5;
-  --surface-color: #ffffff;
-  --hover-color: #f3f4f6;
+    /* BACKGROUNDS */
+    --background-color: #f5f5f5;
+    --surface-color: #ffffff;
+    --hover-color: #f3f4f6;
 
-  /* BORDAS */
-  --border-color: #d1d5db;
+    /* BORDAS */
+    --border-color: #d1d5db;
 
-  /* SOMBRAS */
-  --shadow-primary: rgba(37, 99, 235, 0.25);
-  --shadow-success: rgba(22, 163, 74, 0.25);
+    /* SOMBRAS */
+    --shadow-primary: rgba(37, 99, 235, 0.25);
+    --shadow-success: rgba(22, 163, 74, 0.25);
 
-  /* SPACING */
-  --space-xs: 4px;
-  --space-sm: 8px;
-  --space-md: 16px;
-  --space-lg: 24px;
+    /* SPACING */
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
 
-  /* RADIUS */
-  --radius-sm: 8px;
-  --radius-md: 12px;
-}
+    /* RADIUS */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+  }
 
-/* ========================
+  /* ========================
    RESET
 ======================== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  pointer-events: auto !important;
-}
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    pointer-events: auto !important;
+  }
 
-/* ========================
+  /* ========================
    BASE
 ======================== */
-body {
-  font-family: 'Google Sans', sans-serif;
-  background: var(--background-color);
-  color: var(--text-main);
-  margin: 0px;
-  padding: 0px;
-  max-height: 100vh;
-}
+  body {
+    font-family: 'Google Sans', sans-serif;
+    background: var(--background-color);
+    color: var(--text-main);
+    margin: 0px;
+    padding: 0px;
+    max-height: 100vh;
+  }
 
 
-.container-main {
-  width: 100%;
-  height: 100%;
-}
+  .container-main {
+    width: 100%;
+    height: 100%;
+  }
 
-/* ========================
+  /* ========================
    HEADER
 ======================== */
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-  width: 100%;
-  margin-top: 15px;
-  padding: 0 8%;
-}
+    width: 100%;
+    margin-top: 15px;
+    padding: 0 8%;
+  }
 
-.header-program-infos {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
+  .header-program-infos {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
 
-.header-program-infos h2,
-.header-program-infos p {
-  margin: 0;
-}
+  .header-program-infos h2,
+  .header-program-infos p {
+    margin: 0;
+  }
 
-.header-program-infos h2 {
-  font-size: 1.2rem;
-}
+  .header-program-infos h2 {
+    font-size: 1.2rem;
+  }
 
-.header-program-infos p {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-}
+  .header-program-infos p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
 
-.logo-programa {
-  width: 70px;
-}
+  .logo-programa {
+    width: 70px;
+  }
 
-/* ========================
+  /* ========================
    ACTIONS
 ======================== */
-.header-actions {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
 
-/* ========================
+  /* ========================
    BOTÕES BASE
 ======================== */
-.header-actions button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
+  .header-actions button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 
-  height: 55px;
-  padding: 0 16px;
+    height: 55px;
+    padding: 0 16px;
 
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
 
-  background: var(--surface-color);
-  color: var(--text-main);
+    background: var(--surface-color);
+    color: var(--text-main);
 
-  font-family: inherit;
-  font-size: 0.95rem;
-  font-weight: 500;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 500;
 
-  cursor: pointer;
+    cursor: pointer;
 
-  transition:
-    background 0.2s ease,
-    border-color 0.2s ease,
-    transform 0.15s ease,
-    box-shadow 0.2s ease,
-    opacity 0.2s ease;
-}
+    transition:
+      background 0.2s ease,
+      border-color 0.2s ease,
+      transform 0.15s ease,
+      box-shadow 0.2s ease,
+      opacity 0.2s ease;
+  }
 
-/* SVG */
-.header-actions button svg {
-  width: 18px;
-  height: 18px;
-}
+  /* SVG */
+  .header-actions button svg {
+    width: 18px;
+    height: 18px;
+  }
 
-/* Hover */
-.header-actions button:hover {
-  transform: scale(1.01);
-  opacity: 0.98;
-}
+  /* Hover */
+  .header-actions button:hover {
+    transform: scale(1.01);
+    opacity: 0.98;
+  }
 
-/* Active */
-.header-actions button:active {
-  transform: scale(1.01);
-}
+  /* Active */
+  .header-actions button:active {
+    transform: scale(1.01);
+  }
 
-/* ========================
+  /* ========================
    SELECT BUTTON
 ======================== */
-.btn-select {
-  min-width: 260px;
-  justify-content: space-between;
-}
+  .btn-select {
+    min-width: 260px;
+    justify-content: space-between;
+  }
 
-.btn-select .left {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
+  .btn-select .left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
 
-.btn-select:hover {
-  border-color: var(--primary);
-  background: var(--hover-color);
-}
+  .btn-select:hover {
+    border-color: var(--primary);
+    background: var(--hover-color);
+  }
 
-/* ========================
+  /* ========================
    NEW BUTTON
 ======================== */
-.header-actions .new-btn {
-  background: var(--primary);
-  color: whitesmoke;
-  border: none;
+  .header-actions .new-btn {
+    background: var(--primary);
+    color: whitesmoke;
+    border: none;
 
-  box-shadow: 0 4px 12px var(--shadow-primary);
-}
+    box-shadow: 0 4px 12px var(--shadow-primary);
+  }
 
-.header-actions .new-btn:hover {
-  background: var(--primary-hover);
-  box-shadow: 0 6px 16px var(--shadow-primary);
-}
+  .header-actions .new-btn:hover {
+    background: var(--primary-hover);
+    box-shadow: 0 6px 16px var(--shadow-primary);
+  }
 
-/* ========================
+  /* ========================
    SUCCESS BUTTON
 ======================== */
-.success-btn {
-  background: var(--success);
-  color: white;
-  border: none;
+  .success-btn {
+    background: var(--success);
+    color: white;
+    border: none;
 
-  box-shadow: 0 4px 12px var(--shadow-success);
-}
+    box-shadow: 0 4px 12px var(--shadow-success);
+  }
 
-.success-btn:hover {
-  background: var(--success-hover);
-}
+  .success-btn:hover {
+    background: var(--success-hover);
+  }
 
-/* ========================
+  /* ========================
    MODAL
 ======================== */
 
-.modal-overlay {
-  position: fixed;
-  inset: 0;
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
 
-  background: rgba(0, 0, 0, 0.55);
-  backdrop-filter: blur(4px);
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(4px);
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-  z-index: 9999;
+    z-index: 9999;
 
-  padding: 20px;
-}
+    padding: 20px;
+  }
 
-.modal-header {
-  padding: 16px 20px;
+  .modal-header {
+    padding: 16px 20px;
 
-  font-size: 18px;
-  font-weight: 600;
+    font-size: 18px;
+    font-weight: 600;
 
-  border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #eee;
 
-  background: #fafafa;
-}
+    background: #fafafa;
+  }
 
-.modal-header p {
-  font-size: 16px;
-  font-weight: 300;
-}
+  .modal-header p {
+    font-size: 16px;
+    font-weight: 300;
+  }
 
-.modal-body {
-  padding: 20px;
+  .modal-body {
+    padding: 20px;
 
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
 
-.modal-footer {
-  flex-shrink: 0;
+  .modal-footer {
+    flex-shrink: 0;
 
-  padding: 16px 20px;
+    padding: 16px 20px;
 
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
 
-  border-top: 1px solid var(--border-main);
-  background: #fafafa;
-}
+    border-top: 1px solid var(--border-main);
+    background: #fafafa;
+  }
 
-.modal-content {
-  width: 100%;
-  width: 800px;
+  .modal-content {
+    width: 100%;
+    width: 800px;
 
-  height: 800px;
+    height: 800px;
 
-  background: #ffffff;
-  border-radius: 14px;
+    background: #ffffff;
+    border-radius: 14px;
 
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
 
-  overflow: hidden;
+    overflow: hidden;
 
-  animation: modalIn 0.18s ease-out;
-  padding: 40px;
+    animation: modalIn 0.18s ease-out;
+    padding: 40px;
 
-  display: flex;
-  flex-direction: column;
-}
+    display: flex;
+    flex-direction: column;
+  }
 
-.modal-footer button {
-  height: 45px;
-  padding: 0 20px;
+  .modal-footer button {
+    height: 45px;
+    padding: 0 20px;
 
-  border-radius: 8px;
-  font-size: 14px;
+    border-radius: 8px;
+    font-size: 14px;
 
-  cursor: pointer;
-  transition: all 0.3s ease;
+    cursor: pointer;
+    transition: all 0.3s ease;
 
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 
-  font-weight: 500;
-}
+    font-weight: 500;
+  }
 
-.modal-footer .button-save {
-  background: var(--primary);
-  color: #f5f5f5;
-  border: 1px solid transparent;
-}
+  .modal-footer .button-save {
+    background: var(--primary);
+    color: #f5f5f5;
+    border: 1px solid transparent;
+  }
 
-.modal-footer .button-save:hover {
-  background: var(--primary-hover);
-  transform: translateY(-1px);
-}
+  .modal-footer .button-save:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+  }
 
-.modal-footer .button-cancel {
-  background: rgba(255, 0, 0, 0.568);
-  border: 1px solid #dc2626;
-  color: #ffffff;
-  transition: all 0.2s ease;
-}
+  .modal-footer .button-cancel {
+    background: rgba(255, 0, 0, 0.568);
+    border: 1px solid #dc2626;
+    color: #ffffff;
+    transition: all 0.2s ease;
+  }
 
-.modal-footer .button-cancel:hover {
-  background: rgba(255, 0, 0, 0.774);
-  color: #ffffff;
-}
+  .modal-footer .button-cancel:hover {
+    background: rgba(255, 0, 0, 0.774);
+    color: #ffffff;
+  }
 
-.modal-footer button:active {
-  transform: scale(0.98);
-}
+  .modal-footer button:active {
+    transform: scale(0.98);
+  }
 
-.modal-footer button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-  transform: none;
-}
+  .modal-footer button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
 
-/* ========================
+  /* ========================
    FORMULÁRIO 
 ======================== */
 
-.section {
-  margin-bottom: 22px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--border-main);
-}
+  .section {
+    margin-bottom: 22px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-main);
+  }
 
-.section:last-child {
-  border-bottom: none;
-}
+  .section:last-child {
+    border-bottom: none;
+  }
 
-.section h4 {
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--text-light);
-  margin-bottom: 14px;
-}
+  .section h4 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-light);
+    margin-bottom: 14px;
+  }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-}
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
 
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
 
-.form-group.full {
-  grid-column: 1 / -1;
-}
+  .form-group.full {
+    grid-column: 1 / -1;
+  }
 
-.form-group label {
-  font-size: 13px;
-  font-weight: 500;
-  color: #374151;
-}
+  .form-group label {
+    font-size: 13px;
+    font-weight: 500;
+    color: #374151;
+  }
 
-input {
-  height: 42px;
-  width: 300px;
-  padding: 0 12px;
+  input {
+    height: 42px;
+    width: 300px;
+    padding: 0 12px;
 
-  border-radius: 8px;
-  border: 1px solid var(--border-main);
+    border-radius: 8px;
+    border: 1px solid var(--border-main);
 
-  font-size: 14px;
+    font-size: 14px;
 
-  background: #fff;
-  transition: all 0.2s ease;
-}
+    background: #fff;
+    transition: all 0.2s ease;
+  }
 
-input:focus {
-  outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px var(--shadow-primary);
-}
+  input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--shadow-primary);
+  }
 
-/* ========================
+  /* ========================
    Select Modal
 ======================== */
 
-.list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 10px;
-  overflow-y: auto;
-  height: 500px;
-  padding-right: 5px;
-  min-height: 0;
-}
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+    overflow-y: auto;
+    height: 500px;
+    padding-right: 5px;
+    min-height: 0;
+  }
 
-.item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-  padding: 12px 14px;
-  border-radius: 10px;
+    padding: 12px 14px;
+    border-radius: 10px;
 
-  background: #ffffffa6;
-  color: #000000;
+    background: #ffffffa6;
+    color: #000000;
 
-  cursor: pointer;
-  transition: 0.2s;
-}
+    cursor: pointer;
+    transition: 0.2s;
+  }
 
-.item:hover {
-  background: #ffffff;
-  transform: translateY(-1px);
-}
+  .item:hover {
+    background: #ffffff;
+    transform: translateY(-1px);
+  }
 
-.item-info {
-  display: flex;
-  flex-direction: column;
-}
+  .item-info {
+    display: flex;
+    flex-direction: column;
+  }
 
-.item-info strong {
-  font-size: 14px;
-}
+  .item-info strong {
+    font-size: 14px;
+  }
 
-.item-info span {
-  font-size: 12px;
-  opacity: 0.7;
-}
+  .item-info span {
+    font-size: 12px;
+    opacity: 0.7;
+  }
 
-.item-actions {
-  display: flex;
-  gap: 8px;
-}
+  .item-actions {
+    display: flex;
+    gap: 8px;
+  }
 
-.btn-edit,
-.btn-delete {
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  font-size: 16px;
+  .btn-edit,
+  .btn-delete {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 16px;
 
-  padding: 6px;
-  border-radius: 6px;
+    padding: 6px;
+    border-radius: 6px;
 
-  transition: 0.2s;
-}
+    transition: 0.2s;
+  }
 
-.btn-edit:hover {
-  background: rgba(255, 255, 0, 0.15);
-}
+  .btn-edit:hover {
+    background: rgba(255, 255, 0, 0.15);
+  }
 
-.btn-delete:hover {
-  background: rgba(255, 0, 0, 0.15);
-}
+  .btn-delete:hover {
+    background: rgba(255, 0, 0, 0.15);
+  }
 
-/* ========================
+  /* ========================
    ANIMAÇÕES
 ======================== */
 
-@keyframes modalIn {
-  from {
-    transform: scale(0.98);
-    opacity: 0;
+  @keyframes modalIn {
+    from {
+      transform: scale(0.98);
+      opacity: 0;
+    }
+
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
   }
 
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-/* ========================
+  /* ========================
    SCROLL
 ======================== */
 
-.list::-webkit-scrollbar {
-  width: 6px;
-}
+  .list::-webkit-scrollbar {
+    width: 6px;
+  }
 
-.list::-webkit-scrollbar-thumb {
-  background: #929292;
-  /* background: #444; */
-  border-radius: 10px;
-}
+  .list::-webkit-scrollbar-thumb {
+    background: #929292;
+    /* background: #444; */
+    border-radius: 10px;
+  }
 
-.list::-webkit-scrollbar-track {
-  background: transparent;
-}
+  .list::-webkit-scrollbar-track {
+    background: transparent;
+  }

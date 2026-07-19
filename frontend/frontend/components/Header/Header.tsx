@@ -16,10 +16,10 @@ export default function Header({
 
             <div className="header-program-infos">
 
-                <img src='/logo/saire-icon-big.png' className="logo-programa" />
+                <img src='/logo/logo-roig-icone.png' className="logo-programa" />
 
                 <div>
-                    <h2>Saire</h2>
+                    <h2>Roig</h2>
                     <p>Gerador de etiquetas</p>
                 </div>
 

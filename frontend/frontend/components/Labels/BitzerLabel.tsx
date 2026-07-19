@@ -71,7 +71,7 @@ export default function BitzerLabel({
                             </span>
 
                             <span className="info-value">
-                                {compressor.voltagemNacional}
+                                {compressor.modelo}
                             </span>
                         </div>
 
