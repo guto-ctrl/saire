@@ -145,3 +145,5 @@ vite.config.ts.timestamp-*
 /.vscode
 /backend/Migrations
 /backend/Data/Migrations
+backend/database/Saire.db-shm
+backend/database/Saire.db-wal
