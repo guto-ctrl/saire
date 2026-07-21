@@ -8,6 +8,7 @@ import {
 
 import { Modal, BaseModalProps } from "../../components/Modal/Modal";
 import { CompressorForm, CompressorFormData } from "../../components/Compressor/CompressorForm";
+import { useToast } from "../../components/Toast/ToastContext";
 
 interface EditCompressorModalProps extends BaseModalProps {
   compressorId: number | null;
@@ -20,6 +21,8 @@ export function EditCompressorModal({
   compressorId,
   onUpdated
 }: EditCompressorModalProps) {
+
+  const { toast } = useToast();
 
   const [form, setForm] = useState<CompressorFormData>({
     modelo: "",
@@ -58,20 +61,26 @@ export function EditCompressorModal({
   async function handleUpdate() {
     if (!compressorId) return;
 
-    await updateCompressor(compressorId, {
-      modelo: form.modelo,
-      marca: form.marca,
-      voltagemNacional: form.voltagemNacional ? Number(form.voltagemNacional) : undefined,
-      frequencia: form.frequencia ? Number(form.frequencia) : undefined,
-      corrente: form.corrente ? Number(form.corrente) : undefined,
-      correnteMotorY: form.correnteMotorY ? Number(form.correnteMotorY) : undefined,
-      correnteMotorYY: form.correnteMotorYY ? Number(form.correnteMotorYY) : undefined,
-      volumeDeslocamento: form.volumeDeslocamento ? Number(form.volumeDeslocamento) : undefined,
-      rotacao: form.rotacao ? Number(form.rotacao) : undefined,
-    });
+    try {
+      await updateCompressor(compressorId, {
+        modelo: form.modelo,
+        marca: form.marca,
+        voltagemNacional: form.voltagemNacional ? Number(form.voltagemNacional) : undefined,
+        frequencia: form.frequencia ? Number(form.frequencia) : undefined,
+        corrente: form.corrente ? Number(form.corrente) : undefined,
+        correnteMotorY: form.correnteMotorY ? Number(form.correnteMotorY) : undefined,
+        correnteMotorYY: form.correnteMotorYY ? Number(form.correnteMotorYY) : undefined,
+        volumeDeslocamento: form.volumeDeslocamento ? Number(form.volumeDeslocamento) : undefined,
+        rotacao: form.rotacao ? Number(form.rotacao) : undefined,
+      });
 
-    onUpdated?.();
-    onClose();
+      toast(`Compressor "${form.modelo}" atualizado com sucesso!`, "success");
+      onUpdated?.();
+      onClose();
+    } catch (err) {
+      console.error("Erro ao atualizar compressor:", err);
+      toast("Erro ao atualizar compressor. Tente novamente.", "error");
+    }
   }
 
   if (!isOpen) return null;

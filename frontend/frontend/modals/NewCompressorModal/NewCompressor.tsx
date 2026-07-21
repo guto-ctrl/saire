@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { createCompressor } from "../../services/CompressorService";
 import { CompressorForm } from "../../components/Compressor/CompressorForm";
+import { useToast } from "../../components/Toast/ToastContext";
 
 import {
     Modal,
@@ -17,6 +18,8 @@ export function NewCompressorModal({
     isOpen,
     onClose
 }: NewCompressorModalProps) {
+
+    const { toast } = useToast();
 
     const [form, setForm] = useState({
         modelo: "",
@@ -54,7 +57,7 @@ export function NewCompressorModal({
                 rotacao: form.rotacao ? Number(form.rotacao) : undefined,
             });
 
-            alert(`Sucesso ao cadastrar o compressor ${form.modelo}`);
+            toast(`Compressor "${form.modelo}" cadastrado com sucesso!`, "success");
 
             // opcional: limpar form
             setForm({
@@ -78,6 +81,7 @@ export function NewCompressorModal({
 
         } catch (err) {
             console.error("Erro ao criar compressor:", err);
+            toast("Erro ao cadastrar compressor. Tente novamente.", "error");
         }
     }
 

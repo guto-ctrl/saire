@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { getCompressores, deleteCompressor } from "../../services/CompressorService";
 import { Compressor } from "../../models/Compressor"
 import { Modal, BaseModalProps } from "../../components/Modal/Modal";
+import { useToast } from "../../components/Toast/ToastContext";
+import { useConfirm } from "../../components/Confirm/ConfirmContext";
 
 interface SelectCompressorModalProps extends BaseModalProps {
     onSelect: (compressor: Compressor) => void;
@@ -16,6 +18,9 @@ export function SelectCompressorModal({
     onSelect,
     onEdit
 }: SelectCompressorModalProps) {
+
+    const { toast } = useToast();
+    const confirm = useConfirm();
 
     const [compressores, setCompressores] = useState<Compressor[]>([]);
     const [search, setSearch] = useState("");
@@ -43,17 +48,21 @@ export function SelectCompressorModal({
 
     async function handleDelete(id: number) {
 
-        const confirmDelete = confirm(
-            "Deseja realmente excluir este compressor?"
-        );
+        const confirmed = await confirm({
+            title: "Excluir compressor",
+            message: "Deseja realmente excluir este compressor? Esta ação não pode ser desfeita.",
+            confirmLabel: "Sim, excluir",
+            cancelLabel: "Cancelar",
+            variant: "danger",
+        });
 
-        if (!confirmDelete) return;
+        if (!confirmed) return;
 
         try {
 
             await deleteCompressor(id);
 
-            alert("Compressor excluído com sucesso!");
+            toast("Compressor excluído com sucesso!", "success");
 
             await loadCompressores();
 
@@ -61,7 +70,7 @@ export function SelectCompressorModal({
 
             console.error("Erro ao excluir compressor:", err);
 
-            alert("Erro ao excluir compressor.");
+            toast("Erro ao excluir compressor.", "error");
         }
     }
 

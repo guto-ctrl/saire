@@ -1,8 +1,10 @@
 import "./globals.css";
+import { ToastProvider } from "../components/Toast/ToastContext";
+import { ToastContainer } from "../components/Toast/ToastContainer";
+import { ConfirmProvider } from "../components/Confirm/ConfirmContext";
 
 export default function RootLayout({
   children,
-// }: Readonly<{
 }: {
   children: React.ReactNode;
 }) {
@@ -12,7 +14,12 @@ export default function RootLayout({
         <title>Saire</title>
       </head>
       <body>
-        {children}
+        <ToastProvider>
+          <ConfirmProvider>
+            {children}
+            <ToastContainer />
+          </ConfirmProvider>
+        </ToastProvider>
       </body>
     </html>
   );
