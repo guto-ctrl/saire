@@ -5,44 +5,21 @@
   font-style: normal;
 }
 
-/* CONFIGURAÇÕES DA IMPRESSÃO */
+/*
+ * CONFIGURAÇÕES DE IMPRESSÃO
+ *
+ * A impressão da etiqueta é feita via hook usePrintLabel, que abre uma
+ * janela dedicada com o CSS correto para o rótulo térmico.
+ *
+ * Este bloco apenas oculta a interface caso o usuário use Ctrl+P
+ * diretamente na página (fallback de segurança).
+ */
 @media print {
-  /* Oculta a visibilidade padrão */
-  body * {
-    visibility: hidden;
-  }
-
-  /* Exibe apenas a área de impressão */
-  .print-area, .print-area * {
-    visibility: visible;
-  }
-
-  /* Remove o botão e os controles do fluxo de impressão para não ocuparem espaço */
-  button, .print-controls {
-    display: none !important;
-  }
-
-  @page {
-    size: 100mm 40mm;
-    margin: 0;
-  }
-
-  .print-area {
-    position: absolute;
-    left: 0;
-    top: 0;
-    margin: 0;
-    padding: 0;
-    transform: scale(0.5);
-    transform-origin: top left;
-  }
-
-  /* Remove a borda e o arredondamento da etiqueta na impressão */
-  .bitzer-label {
-    border: none !important;
-    border-radius: 0 !important;
+  body {
+    display: none;
   }
 }
+
   /* ========================
    VARIÁVEIS GLOBAIS
 ======================== */
